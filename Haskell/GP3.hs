@@ -78,7 +78,7 @@ todoMenor (a,b) (c,d) | a<c && b<d = True
                       | otherwise = False
 
 distanciaPuntos :: (Float,Float) -> (Float,Float) -> Float
-distanciaPuntos (a,b) (c,d) = ((a-c)^2 + (b-d)^2)
+distanciaPuntos (a,b) (c,d) = sqrt((a-c)^2 + (b-d)^2)
 
 sumaTerna :: (Int,Int,Int) -> Int
 sumaTerna (a,b,c) = a+b+c
@@ -107,3 +107,19 @@ g :: Int -> Int
 g x | mod x 2 == 0 = div x 2
     | otherwise = x*3+1
 
+bisiesto :: Int -> Bool
+bisiesto x | mod x 4 /= 0 = False
+           | mod x 100 == 0 && mod x 400 /= 0 = False
+           | otherwise = True
+
+absoluto1 :: Float -> Float
+absoluto1 n | n>=0 = n
+      | otherwise = (-n) 
+
+distMan :: (Float,Float,Float) -> (Float,Float,Float) -> (Float)
+distMan (x,y,z) (d,e,f) = (absoluto1 (x-d)) + (absoluto1 (y-e)) + (absoluto1 (z-f))
+
+comparar :: Int -> Int -> Int
+comparar a b | (digitoDecena a + digitoUnidad a) < (digitoDecena b + digitoUnidad b) = 1
+             | (digitoDecena a + digitoUnidad a) == (digitoDecena b + digitoUnidad b) = 0
+             | (digitoDecena a + digitoUnidad a) > (digitoDecena b + digitoUnidad b) = -1
