@@ -1,0 +1,44 @@
+Linux:
+ 
+  TERMINAL: (CTRL + ALT + T)
+  Cambio de directorio: (cd .../ )
+  Copy: (cp [ARCHIVO] [NUEVO ARCHIVO])
+  Ver archivos: (ls -l)
+  Crear carpeta: (mkdir [Nombre])
+  Diferencias: (diff [archivo1] [archivo2])
+    
+                   clinux01@pc1:~/Escritorio$ diff presentacion.txt presentacion_v1.txt
+                   4c4
+                   < * tema 3 
+                   ---
+                   > * tema 4
+
+4c4 cambio en la linea 4
+4d3 linea 4 del primer archivo fue deleted
+
+GIT:
+ 
+  Iniciar git: (git init) 
+  Ver estado de los archivos: (git status)
+  Agregar traking a un archivo: (git add [archivo])
+  Confirmar traking: (git commit -m "[Aclaraciones]")
+  Iniciar sesion: (git config user.email "[federicoborruat@gmail.com]")
+                  (git config user.name "[FedeBorruat]")
+  Diferencia entre archivos de git: (git diff [archivo])
+      Lineas eliminadas (-)
+      Lineas agregadas  (+)
+  Historial del archivo: (git log)
+  Para sacar del trakeo: (git restore --staged [archivo])
+  Clonar archivos de GitHub: (git clone [linkrepositorio]
+  Subir archivos a Github: (git push) {nos va a pedir nombre de usuario y password [token generado previamente]}
+  Actualizar archivos Github: (git pull)
+
+Github:
+
+  Fork: crear una copia de un repositorio
+  Token: Clave para poder clonar el repositorio en caso de no ser publico, si lo pide para pushear. En caso de ser privado si lo va a pedir para clonar y pushear
+  
+
+
+Alaraciones:
+ Despues de clonar un archivo de github, se crea un nuevo directorio dentro del escritorio llamado (tellerDeGit/)
