@@ -95,4 +95,17 @@ def tres_vocales_dist (s:str) -> bool:
     return(res)
 #print(tres_vocales_dist("aeiaaa"))
 
+def cero_en_pares (s:list[int]) -> [int]:
+    for i in range (len(s)):
+        if (i%2==0):
+            s[i]=0
+    return(s)
+#print(cero_en_pares([1,2,3,4]))
 
+def cero_en_pares2 (s:list[int]) -> [int]:
+    x=s
+    for i in range (len(x)):
+        if (i%2==0):
+            s[i]=0
+    return(x)
+#print(cero_en_pares2([1,2,3,4]))
