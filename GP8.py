@@ -136,14 +136,93 @@ def agregar_frase_al_principio (arc: str, frase: str):
     for i in range(len(contenido)):
         archivoW.write(contenido[i])
     archivoW.close()
-#agregar_frase_al_principio('archivo.txt', 'Holaaaa')
+#gregar_frase_al_principio('archivo.txt', 'Holaaaa')
+
+def hay_numeros (e) ->bool:
+    res=False
+    for i in range(len(e)):
+        if e[i]>='0' and e[i]<='9':
+            res=True
+    return(res)
+def hay_min (e) ->bool:
+    res=False
+    for i in range(len(e)):
+        if e[i]>='a' and e[i]<='z':
+            res=True
+    return(res)
+def hay_mayu (e) ->bool:
+    res=False
+    for i in range(len(e)):
+        if e[i]>='A' and e[i]<='Z':
+            res=True
+    return(res)
 
 def listar_palabras_de_archivos (arc: str) -> list:
-    path='/home/fede/Documentos/IP-I/Python/GP8/'
+    path='/home/Estudiante/Descargas/'
     archivo = open(path+arc,'br')
     cont= archivo.read()
-    chr(byte)
-    print(cont)
-    return([])
+    cont2=[]
+    palle=[]
+    for i in range(len(cont)):
+        cont2.append(chr(cont[i]))
+    for i in range(len(cont2)):
+        if len(cont2[i])>=5 and (hay_numeros(cont2[i])) and ((hay_mayu(cont2[i]))or(hay_min(cont2[i]))) and (pertenece(' ',(cont2[i])) or pertenece('_',(cont2[i]))):
+            palle.append(cont2[i])
+    return(palle)
+#print(listar_palabras_de_archivos('Archivo.zip'))
 
-listar_palabras_de_archivos('archivo.txt')
+def calcular_promedio_estudiante (archivo_notas: str, archivo_promedios:str):
+    path='/home/Estudiante/Descargas/'
+    notas=open(path+archivo_notas,'r')
+    prom=open(path+'promedios.txt','w')
+    contnotas=notas.readlines()
+    contnotas2=''
+    palabras=[]
+    palabra=''
+    palrever=''
+    for i in range(len(contnotas)):
+        contnotas2=contnotas2+contnotas[i]
+    for i in range(len(contnotas2)):
+        if contnotas2[i]!='_' and contnotas2[i]!='\n' :
+            palabra=contnotas2[i]+palabra
+        else:
+            for i in range(len(palabra)):
+                palrever= palabra[i]+palrever
+            palabras.append(palrever)
+            palabra=''
+            palrever=''
+    for i in range (len(palabras)):
+        palabra=palabra+'!'+palabras[i]
+    palabra=palabra+'!'
+    prom.write(palabra)
+calcular_promedio_estudiante('notas.txt','')    
+    
+def promedio_estudiante(arc:str, lU:str)-> float:
+    path='/home/Estudiante/Descargas/'
+    archivo=open(path+arc, 'r')
+    cont=archivo.readlines()
+    contarc=''
+    palabras=[]
+    nota=[]
+    lu=[]
+    palabra=''
+    palrever=''
+
+    for i in range(len(cont)):
+        contarc=contarc+cont[i]
+
+    for i in range(len(contarc)):
+        if contarc[i]!='!':
+            palabra=contarc[i]+palabra
+        else:
+            for i in range(len(palabra)):
+                palrever= palabra[i]+palrever
+            palabras.append(palrever)
+            palabra=''
+            palrever=''
+
+    for i in range(len(palabras)): 
+        if len(palabras[i])==1 or len(palabras[i])==2 :
+            nota.append(palabras[i])
+            lu.append(palabras[i-3])
+promedio_estudiante('promedios.txt','')
