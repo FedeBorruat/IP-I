@@ -172,7 +172,7 @@ def listar_palabras_de_archivos (arc: str) -> list:
 #print(listar_palabras_de_archivos('Archivo.zip'))
 
 def calcular_promedio_estudiante (archivo_notas: str, archivo_promedios:str):
-    path='/home/Estudiante/Descargas/'
+    path='/home/fede/Documentos/IP-I/Python/GP8/'
     notas=open(path+archivo_notas,'r')
     prom=open(path+'promedios.txt','w')
     contnotas=notas.readlines()
@@ -195,10 +195,10 @@ def calcular_promedio_estudiante (archivo_notas: str, archivo_promedios:str):
         palabra=palabra+'!'+palabras[i]
     palabra=palabra+'!'
     prom.write(palabra)
-calcular_promedio_estudiante('notas.txt','')    
+#calcular_promedio_estudiante('notas.txt','')    
     
-def promedio_estudiante(arc:str, lU:str)-> float:
-    path='/home/Estudiante/Descargas/'
+def promedio_estudiante(arc:str, nlu:str)-> float:
+    path='/home/fede/Documentos/IP-I/Python/GP8/'
     archivo=open(path+arc, 'r')
     cont=archivo.readlines()
     contarc=''
@@ -225,4 +225,218 @@ def promedio_estudiante(arc:str, lU:str)-> float:
         if len(palabras[i])==1 or len(palabras[i])==2 :
             nota.append(palabras[i])
             lu.append(palabras[i-3])
-promedio_estudiante('promedios.txt','')
+    prom=0
+    n=0
+    for i in range(len(lu)):
+        if nlu==lu[i]:
+            prom=prom+int((nota[i]))
+            n=n+1
+
+    prom=prom/n
+    return(prom)
+#print(promedio_estudiante('promedios.txt','155'))
+
+from queue import LifoQueue
+import random
+
+def generar_nros_al_azar_pila(cantidad:int, desde:int, hasta:int) -> [int]:
+    pila = LifoQueue()
+    while (pila.qsize()!=cantidad):
+        n=random.randint(desde,hasta)
+        pila.put(n)
+    return(pila)
+#print(generar_nros_al_azar(2,0,10).queue)
+
+def cantidad_de_elemetnos (p:[int]) -> int:
+    x=p.copy()
+    l=LifoQueue()
+    for i in range(len(x)):
+        l.put(x[i])
+    i=0
+    while not(l.empty()):
+        i=i+1
+        l.get()
+    return i
+#print(cantidad_de_elemetnos([1]))
+
+def buscar_el_maximo (p:LifoQueue[int]) -> int:
+    for r in range(p.qsize()-1):
+        x=l.get()
+        y=l.get()
+        if x<y:
+            l.put(y)
+        else:
+            l.put(x)
+    h=l.get()
+    return(h)
+#print(buscar_el_maximo(l))
+
+def evaluar_expresion(s:str) -> float:
+    op=LifoQueue()
+    el=LifoQueue()
+    for i in range(len(s)):
+        x=(len(s)-i)-1
+        if s[x]=='+':
+            op.put(s[x])
+        elif s[x]=='-':
+            op.put(s[x])
+        elif s[x]=='*':
+            op.put(s[x])
+        elif s[x]=='/':
+            op.put(s[x])
+        elif (s[x]>='0' and s[x]<='9'):
+            el.put(s[x])
+    while not(op.empty()):
+        a=op.get()
+        if a=='+':
+            A= el.get()
+            B= el.get()
+            C=int(A)+int(B)
+            el.put(C)
+        elif a=='-':
+            A= el.get()
+            B= el.get()
+            C=int(A)-int(B)
+            el.put(C)
+        elif a=='*':
+            A= el.get()
+            B= el.get()
+            C=int(A)*int(B)
+            el.put(C)
+        elif a=='/':
+            A= el.get()
+            B= el.get()
+            C=int(A)/int(B)
+            el.put(C)
+    D=el.get()
+    return(D)
+#print(evaluar_expresion("3 4 + 5 * 2 -"))
+
+from queue import Queue
+
+def generar_nros_al_azar_cola():
+    cola=Queue()
+    x=random.randint(0,100)
+    cola.put(x)
+#(generar_nros_al_azar_cola())
+
+def cant_elementos(c:Queue)-> int:
+    i=0
+    while not(c.empty()):
+        c.get()
+        i=i+1
+    return(i) 
+#print(cant_elementos(a))
+
+def armar_secuancia_de_bingo() -> Queue[int]:
+    c=Queue()
+    n=[]
+    while len(n)!=100:
+        x=random.randint(0,99)
+        if not(pertenece(x,n)):
+            n.append(x)
+    for i in range(len(n)):
+        c.put(n[i])
+    return(c)
+#print(armar_secuancia_de_bingo().queue)
+
+def jugar_carton_de_bingo(carton:list[int],bolillero:Queue[int])->int:
+    carton1=carton.copy()
+    bolillero1=Queue()
+    G=bolillero.get()
+    bolillero1.put(G)
+    bolillero.put(G)
+    while (bolillero.qsize() != bolillero1.qsize()):
+        a=bolillero.get()
+        bolillero1.put(a)
+        bolillero.put(a)    
+    i=0
+    tiradas=0
+    while i!=12:
+        b=bolillero1.get()
+        tiradas=tiradas+1
+        if pertenece(b,carton1):
+            i=i+1
+    print(bolillero.queue)
+    return(tiradas)
+C=Queue()
+C.put(1)
+C.put(2)
+C.put(3)
+C.put(4)
+C.put(5)
+C.put(6)
+C.put(7)
+C.put(8)
+C.put(9)
+C.put(10)
+C.put(11)
+C.put(12)
+
+#print(jugar_carton_de_bingo([1,2,3,4,5,6,36,8,9,10,11,12],armar_secuancia_de_bingo()))
+
+def n_pacientes_urgentes (c:Queue[(int,str,str)]) -> int:
+    c1=Queue()
+    a=c.get()
+    c1.put(a)
+    c.put(a)    
+    while c.qsize() != c1.qsize():
+        A=c.get()
+        c1.put(A)
+        c.put(A)
+    prioridad=Queue()
+    while not(c1.empty()):
+        b=c1.get()
+        if int(b[0])>=0 and int(b[0])<=3:
+            prioridad.put(b)
+    return(prioridad.qsize())
+hospital=Queue()
+hospital.put((2,'j','j'))
+hospital.put((1,'j','j'))
+hospital.put((8,'j','j'))
+hospital.put((6,'j','j'))
+hospital.put((8,'j','j'))
+#print(n_pacientes_urgentes(hospital))
+
+def Banco (ficha: Queue[(str,int,bool,bool)]) -> Queue[(str,int,bool,bool)]:
+    ficha1=Queue()
+    a=ficha.get()
+    ficha1.put(a)
+    ficha.put(a)
+    while ficha1.qsize() != ficha.qsize():
+        A=ficha.get()
+        ficha1.put(A)
+        ficha.put(A)
+    prioridad=Queue()
+    preferencial=Queue()
+    resto=Queue()
+    while not(ficha1.empty()):
+        b=ficha1.get()
+        if b[3]==True:
+            prioridad.put(b)
+        elif b[2]==True and b[3]==False:
+            preferencial.put(b)
+        else:
+            resto.put(b)
+    orden=Queue()
+    while not(prioridad.empty()):
+        c=prioridad.get()
+        orden.put(c)
+    while not(preferencial.empty()):
+        d=preferencial.get()
+        orden.put(d)
+    while not(resto.empty()):
+        r=resto.get()
+        orden.put(r)
+    return(orden)
+Lista=Queue()
+Lista.put(('AA',23423423,True,False))
+Lista.put(('AB',23423345,True,False))
+Lista.put(('AC',23424445,True,True))
+Lista.put(('AD',23455566,True,True))
+Lista.put(('AE',23423454,False,True))
+Lista.put(('AF',23423567,True,False))
+Lista.put(('AG',23423456,False,False))
+Lista.put(('AH',23423420,False,False))
+#print(Banco(Lista))
+
